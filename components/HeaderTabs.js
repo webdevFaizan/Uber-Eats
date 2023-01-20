@@ -1,17 +1,8 @@
-import { View, Text, StyleSheet, StatusBar, SafeAreaView, Button, TouchableOpacity, Pressable } from 'react-native'
+import { View, Text, TouchableOpacity  } from 'react-native'
 import {React,useEffect,useState} from 'react';
 
-function ButtonPress(selectedButton){
-    // console.log(selectedButton);
-    setActiveTab(selectedButton);
-}
-
-
 export default function HeaderTabs() {
-    const [activeTab, setActiveTab] = useState('Delivery');
-    // const [backgroundColor, setBackgroundColor] = useState('white');
-    // const [color, setColor] = useState('black');
-
+    const [activeTab, setActiveTab] = useState('Delivery');   
     useEffect(() => {
       console.log(activeTab);    
     }, [activeTab])
@@ -19,8 +10,7 @@ export default function HeaderTabs() {
     
     return (
         // The difference between alignSelf and alignItems is that it aligns itself while alignItems aligns it children.
-        <View style={{flexDirection : 'row', alignSelf: 'center'}}>
-          {/* <Text>HeaderTabs</Text>*/}
+        <View style={{flexDirection : 'row', alignSelf: 'center', paddingBottom : 12}}>
           <HeaderButton text='Delivery' activeTab={activeTab} backgroundColor= 'black' color= 'white' setActiveTab={setActiveTab}/>
           <HeaderButton text='Pickup' activeTab={activeTab} backgroundColor= 'white' color= 'black' setActiveTab={setActiveTab}/>
         </View>
@@ -43,7 +33,7 @@ const HeaderButton =(props)=>{
             props.setActiveTab(props.text);
         }}
     >
-        <Text style={{color : props.activeTab===props.text?'white':'black'}}>{props.text}</Text>
+        <Text style={{color : props.activeTab===props.text?'white':'black', fontWeight : '900', fontSize : 18}}>{props.text}</Text>
     </TouchableOpacity>
     )
 }
