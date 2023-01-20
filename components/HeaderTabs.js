@@ -6,11 +6,9 @@ export default function HeaderTabs() {
     useEffect(() => {
       console.log(activeTab);    
     }, [activeTab])
-    
-    
     return (
         // The difference between alignSelf and alignItems is that it aligns itself while alignItems aligns it children.
-        <View style={{flexDirection : 'row', alignSelf: 'center', paddingBottom : 12}}>
+        <View style={{borderBottomColor: '#eee',  borderBottomWidth: 2, flexDirection : 'row', alignSelf: 'center', paddingVertical : 4}}>
           <HeaderButton text='Delivery' activeTab={activeTab} backgroundColor= 'black' color= 'white' setActiveTab={setActiveTab}/>
           <HeaderButton text='Pickup' activeTab={activeTab} backgroundColor= 'white' color= 'black' setActiveTab={setActiveTab}/>
         </View>

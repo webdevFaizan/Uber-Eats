@@ -5,35 +5,38 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 
 export default function SearchBar() {
   return (
-    <View>
+    <View style={{ marginTop: 5, flexDirection: "row" }}>
       <GooglePlacesAutocomplete 
       placeholder='Craving for Delicious Meal?'
       
       styles={{
         textInput: {
           backgroundColor: "#eee",
-          borderRadius: 20,
+          borderRadius: 0,
           fontWeight: "700",
-          marginTop: 7,
+          marginTop: 6,
         },
         textInputContainer: {
           backgroundColor: "#eee",
-          borderRadius: 50          
+          borderRadius: 50,
+          flexDirection: "row",
+          alignItems: "center",
+          marginRight: 10,
         },
       }}
       
-      // renderLeftButton={ ()=>(
-      //   // <View style={{ marginLeft: 0 }}>
-      //   //   <Ionicons name="location-sharp" size={24} color="#000" />
-      //     {/* <Text style={{color: 'black'}}>sedf</Text> */}
-      //   // </View>
-      // )}
+      renderLeftButton={ ()=>(
+        <View style={{ marginLeft: 10 }}>
+          <Ionicons name="location-sharp" size={24} color="#000" />
+          {/* <Text style={{color: 'black'}}>sedf</Text> */}
+        </View>
+      )}
 
-      // renderRightButton ={()=>(
-      //   // <View style={{backgroundColor: 'black'}}>
-      //   //   <Text style={{color : 'red'}}>Search</Text>
-      //   // </View>
-      // )}
+      renderRightButton ={()=>(
+        <View style={{ marginRight: 15 }}>
+          <Text >Search</Text>
+        </View>
+      )}
       />
     </View>
   )
