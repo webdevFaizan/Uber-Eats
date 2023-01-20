@@ -41,13 +41,22 @@ const items = [
 
 
 // IMPORTANT : The following function has been implemented using scrollView, but the problem with scroll view is that it is unoptimised as well as the key to the value is not given automatically. This is why in the next implementation of the Flatlist I am going to implement Flatlist.
-function Categories2() {
+export default function Categories() {
   return (
-    <ScrollView horizontal>
+
+    <View
+      style={{
+        marginTop: 5,
+        backgroundColor: "#fff",
+        paddingVertical: 10,
+        paddingLeft: 20,
+      }}
+    >
+    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
       {
         items.map((item)=>{
           return(
-              <View style={{marginHorizontal : 10, paddingVertical : 10}}>
+              <View style={{marginHorizontal : 10, paddingVertical : 10, alignSelf:'center'} } key={item.id}>
                 <Image 
                   source={item.image} 
                   style={{
@@ -55,23 +64,25 @@ function Categories2() {
                     height:43
                   }}
                 />
-                <Text>{item.text}</Text>
+                <Text >{item.text}</Text>
               </View>
           )
         })
       }
     </ScrollView>
+    </View>
   )
 }
 
-
-export default function Categories() {
+//IMPORTANT : The following function is totally working, but FlatList is not used furthur except experimentation, the reason for this is that in Video it is not being taught as such.
+function Categories2() {  //This is just a dummy function, which will help us understand the use of FlatList.
   return (
     < FlatList
-      horizontal
-      data={items}
+      showsHorizontalScrollIndicator={false}
+      horizontal  //This will tell in which direction the list is going to be, this parameter is same as the ScrollView.
+      data={items}  //This is the list of all the elements that has to be added to the Flatlist, and the renderItem method will tell how to add those.
       alwaysBounceHorzontal= {true}
-      renderItem={(itemsObject)=>{
+      renderItem={(itemsObject)=>{    //ItemObject is literally an object, which will contain the data item in the form of an object and in that there is image and text which we require to show, and the key extractor will be really helpful, since usually these kind of data are recieved with the help of API, and the API usually have a unique tag of id which could be used as key.
         return (
           <View style={{marginHorizontal : 10, paddingVertical : 10}}> 
                 <Image 
@@ -87,7 +98,6 @@ export default function Categories() {
         )
       }}
       keyExtractor = {(item,index)=>{return item.id}} 
-
     />
   )
 }
