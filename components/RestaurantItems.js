@@ -56,15 +56,14 @@ export default function RestaurantItems(props) {
   return (
     <TouchableOpacity activeOpacity={1} style={{marginBottom :10}}>
         {
-            localRestaurants.map((restaurant, index)=>(
-                <View style={{padding : 10, marginTop : 10, backgroundColor : 'white'}}>
+            props.restaurantData.map((restaurant, index)=>(
+                <View style={{padding : 10, marginTop : 10, backgroundColor : 'white'}} key= {restaurant.id}>
                     {/* <Text>RestaurantItems</Text> */}
                     <RestaurantImage uri={restaurant.image_url}/>
-                    <RestaurantText name={restaurant.name} rating={restaurant.rating}/>
+                    <RestaurantText name={restaurant.name} rating={restaurant.rating} distance={restaurant.distance}/>
                 </View>
             ))
         }
-
     </TouchableOpacity>
   )
 }
@@ -96,7 +95,7 @@ const RestaurantText =(props)=>{
         >
             <View style={{flexDirection : 'column'}}>
                 <Text style={{ fontSize: 15, fontWeight: "bold" }}>{props.name}</Text>
-                <Text style={{ fontSize: 13, color: "gray" }}>30-45 • min</Text>
+                <Text style={{ fontSize: 13, color: "gray" }}>{`${Math.ceil(props.distance)} m`}</Text>
             </View>
             <View
             style={{
@@ -108,7 +107,7 @@ const RestaurantText =(props)=>{
                 borderRadius: 15,
             }}
             >
-                <Text>4.5</Text>
+                <Text>{props.rating}</Text>
             </View>            
         </View>
     )
