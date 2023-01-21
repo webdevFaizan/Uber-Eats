@@ -11,6 +11,7 @@ export const localRestaurants = [
       price: "$$",
       reviews: 1244,
       rating: 4.5,
+      id : 1
     },
     {
       name: "Benihana",
@@ -20,6 +21,7 @@ export const localRestaurants = [
       price: "$$",
       reviews: 1244,
       rating: 3.7,
+      id : 2
     },
     {
       name: "India's Grill",
@@ -29,6 +31,7 @@ export const localRestaurants = [
       price: "$$",
       reviews: 700,
       rating: 4.9,
+      id : 3
     },    
     {
       name: "India's Grill",
@@ -38,6 +41,7 @@ export const localRestaurants = [
       price: "$$",
       reviews: 700,
       rating: 4.9,
+      id : 4
     },
     {
       name: "India's Grill",
@@ -47,6 +51,7 @@ export const localRestaurants = [
       price: "$$",
       reviews: 700,
       rating: 4.9,
+      id : 5
     },
   ];
 
