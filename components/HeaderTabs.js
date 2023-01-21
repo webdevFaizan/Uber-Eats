@@ -1,16 +1,33 @@
 import { View, Text, TouchableOpacity  } from 'react-native'
 import {React,useEffect,useState} from 'react';
 
-export default function HeaderTabs() {
-    const [activeTab, setActiveTab] = useState('Delivery');   
-    useEffect(() => {
-      console.log(activeTab);    
-    }, [activeTab])
+export default function HeaderTabs(props) {
+    
     return (
         // The difference between alignSelf and alignItems is that it aligns itself while alignItems aligns it children.
-        <View style={{borderBottomColor: '#eee',  borderBottomWidth: 2, flexDirection : 'row', alignSelf: 'center', paddingVertical : 4}}>
-          <HeaderButton text='Delivery' activeTab={activeTab} backgroundColor= 'black' color= 'white' setActiveTab={setActiveTab}/>
-          <HeaderButton text='Pickup' activeTab={activeTab} backgroundColor= 'white' color= 'black' setActiveTab={setActiveTab}/>
+        <View style={
+            {
+            borderBottomColor: '#eee',  
+            borderBottomWidth: 2, 
+            flexDirection : 'row', 
+            alignSelf: 'center', 
+            paddingVertical : 4
+            }}
+        >
+          <HeaderButton 
+            text='Delivery' 
+            activeTab={props.activeTab} 
+            backgroundColor= 'black' 
+            color= 'white' 
+            setActiveTab={props.setActiveTab}
+            />
+          <HeaderButton 
+            text='Pickup' 
+            activeTab={props.activeTab} 
+            backgroundColor= 'white' 
+            color= 'black' 
+            setActiveTab={props.setActiveTab}
+        />
         </View>
       );
     }
