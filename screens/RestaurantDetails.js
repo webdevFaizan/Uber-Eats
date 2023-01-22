@@ -66,10 +66,10 @@ const foods = [
   ];
   
 
-export default function RestaurantDetails(){
+export default function RestaurantDetails({route}){
   return (
     <SafeAreaView style={styles.AndroidSafeArea}>
-      <About foods={foods}/>
+      <About foods={foods} route={route}/>
       {/* <Divider width={3}/> */}
     </SafeAreaView>
   )

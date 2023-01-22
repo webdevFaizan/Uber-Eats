@@ -27,7 +27,7 @@ export default function MenuItems({foods}) {
 
 const FoodImage =({url}) =>{
     return (
-        <Image source={{uri : url}} style={{width : 100, height :100, borderRadius : 25}} />
+        <Image source={{uri : url}} style={{width : 140, height :120, borderRadius : 25, paddingLeft : 4}} />
     )
 }
 
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     menuItemStyle2: {
         flexDirection: "row",
         justifyContent: "space-between",
-        margin: 20,        
+        // margin: 20,        
         width : '100%',
         alignItems : 'center',         
       },
