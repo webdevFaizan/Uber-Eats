@@ -14,6 +14,13 @@ const name = "Restaurant Image data";
 const description = "This delicious item."
 
 export default function About(props) {    
+    const { name, image, price, reviews, rating, categories } = props.route.params; //The data in the props.route.params is being sent while the unloading of the component happens from the Home.js component, the data sent from over there will be used when a new component is being loaded and thus there  is a connection between two different component loading and unloading.
+
+    const formattedCategories = categories.map((cat) => cat.title).join(" • ");
+
+    const description = `${formattedCategories} ${
+        price ? " • " + price : ""
+    } • 🎫 • ${rating} ⭐ (${reviews}+)`;
     return (
     <ScrollView>
       <View>

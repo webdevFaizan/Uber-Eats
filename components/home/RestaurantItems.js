@@ -61,7 +61,21 @@ export default function RestaurantItems({navigation, ...props}) {
   return (
     <>
       {props.restaurantData.map((restaurant, index)=>(
-        <TouchableOpacity activeOpacity={1} style={{marginBottom :10}} onPress={()=>navigation.navigate('RestaurantDetails')} key= {restaurant.id}>
+          // IMPORTANT NOTE : (Below TouchableOpacity) This navigation prop is being transferred from the navigation.js file, where the loading and unloading of the components takes place, this has been passed from navigation.js --> App.js --> Home.js --> RestaurantItems.js and as we press on the touchable opacity we will then trigger the function that will then unmount Home component and then trigger the RestaurantDetails.js and at this point it can be used to show the custom data using the yelp api.
+        <TouchableOpacity 
+          key= {restaurant.id}
+          activeOpacity={1} 
+          style={{marginBottom :10}} 
+          onPress={() =>    //IMPORTANT : Once we press the tile of restaurant image that is being shown, we are going to mount a whole new component, which means we are going to another component, now for this if we want to pass data from one component to the other we can pass it here in the form of object. Which will be stored in the variable known as route.
+            navigation.navigate("RestaurantDetails", {
+              name: restaurant.name,
+              image: restaurant.image_url,
+              price: restaurant.price,
+              reviews: restaurant.review_count,
+              rating: restaurant.rating,
+              categories: restaurant.categories,
+            })}
+        >
             <View style={{padding : 10, marginTop : 10, backgroundColor : 'white'}} >      
                 <RestaurantImage uri={restaurant.image_url}/>
                 <RestaurantText name={restaurant.name} rating={restaurant.rating} distance={restaurant.distance}/>
