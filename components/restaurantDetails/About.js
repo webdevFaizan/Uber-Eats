@@ -1,6 +1,7 @@
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import React from 'react'
-import { Image } from 'react-native-elements';
+import { Divider, Image } from 'react-native-elements';
+import MenuItems from './MenuItems';
 
 
 const image = "https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
@@ -9,11 +10,23 @@ const description = "This delicious item."
 
 export default function About(props) {    
     return (
+    <>
       <View>
         <RestaurantImage image={image} />
         <RestaurantName name={name} />
         <RestaurantDescription description={description} />
+        <Divider width={3}/>
       </View>
+      <ScrollView>
+        <MenuItems/>
+        <MenuItems/>
+        <MenuItems/>
+        <MenuItems/>
+        <MenuItems/>
+        <MenuItems/>
+        <MenuItems/>
+      </ScrollView>
+    </>
     );
   }
 
