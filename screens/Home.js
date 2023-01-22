@@ -9,7 +9,7 @@ import { Divider } from 'react-native-elements';
 
 const YELP_API_KEY =  "zeB0Ha-IuKHERItBz_PmW9VJoQWnUpUeTgeaNiwDIs8oQS6-bgf3rELGkKFfecSw5Oh-AaNWN18IU41k_JDQMVCVC8-6cpk03ReXTpwOGZZ1HCGX094WAPycbWHMY3Yx";
 
-export default function Home(){
+export default function Home({navigation}){
   const [restaurantData, setRestaurantData] = useState(localRestaurants);
   const [city, setCity]= useState('london');
   const [activeTab, setActiveTab] = useState("Delivery");
@@ -35,7 +35,7 @@ export default function Home(){
   },[city,activeTab]);    //IMPORTANT : This city variable needs to be tracked, since we are looking for the change in the state of city and as soon as it is done, this useEffect will fire the inner function, so that the new results could be shown.
   // This activeTab will decide whether the data is going to be related to the Delivery Restaurant or related to the pickup restaurant.
   return (
-    <>
+    <SafeAreaView>
       <View style={{
             backgroundColor: 'white',
             padding : 5,
@@ -49,10 +49,10 @@ export default function Home(){
       </View>
         <Categories/>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <RestaurantItems restaurantData={restaurantData}/>
+        <RestaurantItems restaurantData={restaurantData} navigation={navigation}/>
       </ScrollView>
         
         <BottomTabs/>
-    </>
+    </SafeAreaView>
   )
 }

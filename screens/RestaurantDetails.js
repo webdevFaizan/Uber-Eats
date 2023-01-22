@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, SafeAreaView, SafeAreaViewBase, StyleSheet, StatusBar } from 'react-native'
 import React from 'react'
 import About from '../components/restaurantDetails/About'
 import { Divider } from 'react-native-elements';
@@ -66,11 +66,19 @@ const foods = [
   ];
   
 
-export default function restaurantDetails(){
+export default function RestaurantDetails(){
   return (
-    <View>
+    <SafeAreaView style={styles.AndroidSafeArea}>
       <About foods={foods}/>
       {/* <Divider width={3}/> */}
-    </View>
+    </SafeAreaView>
   )
 }
+
+const styles = StyleSheet.create({
+    AndroidSafeArea: {
+      flex: 1,
+      backgroundColor: "#eee",
+      paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+    }
+  });
