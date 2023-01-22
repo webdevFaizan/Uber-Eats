@@ -1,28 +1,67 @@
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, FlatList } from 'react-native'
 import React from 'react'
 import { Image } from 'react-native-elements'
 
-export default function MenuItems() {
+export default function MenuItems({foods}) {
+    console.log(foods.length)
     return (
-        <View style={{flexDirection : 'row-reverse', justifyContent : 'space-between', padding : 25, alignItems : 'center', borderBottomColor : '#190000', borderBottomWidth : 2}}>
-            {/* <Text>MenuItems</Text> */}
-            <FoodImage/>
-            <FoodInfo/>
+        <View >
+                {foods.map((food,index)=>
+                (<View  key={index}>
+                    <View style={styles.menuItemStyle}>   
+                        <View style={styles.menuItemStyle2}>
+                            <View style={{width : '60%'}}>
+                                <FoodInfo price={food.price} description={food.description} title={food.title}/>
+                            </View>
+                            <View style={{width : '40%', flexDirection : 'row-reverse'}}>
+                                <FoodImage url={food.image}/>                        
+                            </View>
+                        </View>
+                    </View>
+                 </View>
+                ))
+                }            
         </View>
     )
 };
 
-const FoodImage =() =>{
+const FoodImage =({url}) =>{
     return (
-        <Image source={{uri : "https://www.kitchensanctuary.com/wp-content/uploads/2019/08/Crispy-Chicken-Burger-tall-FS-4512.webp"}} style={{width : 100, height :100}} />
+        <Image source={{uri : url}} style={{width : 100, height :100, borderRadius : 25}} />
     )
 }
 
-const FoodInfo =() =>{
+const FoodInfo =({title, price, description}) =>{
     return (
         <View>
-            <Text>Name of food items</Text>
-            <Text>Ratings of food items</Text>
+            <Text>{title}</Text>
+            <Text>{description}</Text>
+            <Text>{price}</Text>
         </View>
     )
 }
+
+
+const styles = StyleSheet.create({
+    menuItemStyle: {
+      flexDirection: "column",
+      justifyContent: "space-between",
+      padding: 20,
+      alignItems : 'center', 
+      borderBottomColor : '#190000', 
+      borderBottomWidth : 2
+    },
+
+    menuItemStyle2: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        margin: 20,        
+        width : '100%',
+        alignItems : 'center',         
+      },
+  
+    titleStyle: {
+      fontSize: 19,
+      fontWeight: "600",
+    },
+  });

@@ -9,6 +9,7 @@ export default function App() {
       <SafeAreaView
         style={styles.AndroidSafeArea}
       >    
+      {/* <Home/> */}
         <RestaurantDetails/>      
       </SafeAreaView>
       <View>
