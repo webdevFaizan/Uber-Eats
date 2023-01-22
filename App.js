@@ -1,13 +1,18 @@
 import { View, Text, StyleSheet, StatusBar, SafeAreaView } from "react-native";
 import Home from "./screens/Home";
+import RestaurantDetails from "./screens/RestaurantDetails";
 
 export default function App() {
   return (
-    <SafeAreaView
-      style={styles.AndroidSafeArea}
-    >    
-      <Home/>      
-    </SafeAreaView>
+    <>
+      <SafeAreaView
+        style={styles.AndroidSafeArea}
+      >    
+        <RestaurantDetails/>      
+      </SafeAreaView>
+      <View>
+      </View>
+    </>
   );
 }
 
