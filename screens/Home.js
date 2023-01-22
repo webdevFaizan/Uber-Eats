@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, ScrollView } from 'react-native'
+import { View, Text, SafeAreaView, ScrollView, StyleSheet, StatusBar } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import HeaderTabs from '../components/home/HeaderTabs'
 import SearchBar from '../components/home/SearchBar'
@@ -35,7 +35,7 @@ export default function Home({navigation}){
   },[city,activeTab]);    //IMPORTANT : This city variable needs to be tracked, since we are looking for the change in the state of city and as soon as it is done, this useEffect will fire the inner function, so that the new results could be shown.
   // This activeTab will decide whether the data is going to be related to the Delivery Restaurant or related to the pickup restaurant.
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.AndroidSafeArea}>
       <View style={{
             backgroundColor: 'white',
             padding : 5,
@@ -56,3 +56,11 @@ export default function Home({navigation}){
     </SafeAreaView>
   )
 }
+
+const styles = StyleSheet.create({
+  AndroidSafeArea: {
+    flex: 1,
+    backgroundColor: "#eee",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+  }
+});
