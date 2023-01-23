@@ -10,9 +10,11 @@ import RestaurantDetails from "./screens/RestaurantDetails";
 export default function RootNavigation(){
     const Stack = createStackNavigator();
 
+
     const screenOptions = {
         headerShown : false
     };
+    const jhdf=3;
 
     return (
         <NavigationContainer>
