@@ -30,7 +30,7 @@ export default function Home({navigation}){
   }
 
   useEffect(()=>{
-    restaurantFromYelp();    //When the API key limit is reached, this means that we cannot call the API using this key anymore.
+    // restaurantFromYelp();    //When the API key limit is reached, this means that we cannot call the API using this key anymore.
   },[city,activeTab]);    //IMPORTANT : This city variable needs to be tracked, since we are looking for the change in the state of city and as soon as it is done, this useEffect will fire the inner function, so that the new results could be shown.
   // This activeTab will decide whether the data is going to be related to the Delivery Restaurant or related to the pickup restaurant.
   return (

@@ -2,6 +2,7 @@ import { View, Text, ScrollView } from 'react-native'
 import React from 'react'
 import { Divider, Image } from 'react-native-elements';
 import MenuItems from './MenuItems';
+import ViewCart from './ViewCart';
 
 const yelpRestaurantInfo =() =>{
 
@@ -31,6 +32,7 @@ export default function About(props) {
       </View>
       <View>
         <MenuItems foods ={props.foods}/>
+        
       </View>
     </ScrollView>
     );

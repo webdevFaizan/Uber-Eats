@@ -2,6 +2,7 @@ import { View, Text, SafeAreaView, SafeAreaViewBase, StyleSheet, StatusBar } fro
 import React from 'react'
 import About from '../components/restaurantDetails/About'
 import { Divider } from 'react-native-elements';
+import ViewCart from '../components/restaurantDetails/ViewCart';
 
 const foods = [
     {
@@ -68,10 +69,16 @@ const foods = [
 
 export default function RestaurantDetails({route}){
   return (
-    <SafeAreaView style={styles.AndroidSafeArea}>
-      <About foods={foods} route={route}/>
-      {/* <Divider width={3}/> */}
-    </SafeAreaView>
+    <>
+      <SafeAreaView style={styles.AndroidSafeArea}>
+        <About foods={foods} route={route}/>
+        {/* <Divider width={3}/> */}
+      </SafeAreaView>
+      <View>
+        <ViewCart/>   
+        {/* IMPORTANT : This view cart component had to be kept on the top of all the other elements, and the position had to be defined in respect to the whole screen, this is why flex =1 had to be kept, and the position of this component had to be absolute, so that no matter the scrolling component, the view cart remained at its designated place.*/}
+      </View>
+    </>
   )
 }
 
