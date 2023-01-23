@@ -46,13 +46,13 @@ const RestaurantImage =({image}) =>{
 
 const RestaurantName =({name})=>{
     return (
-        <Text>{name}</Text>
+        <Text style={{fontSize : 25, fontWeight : '900', padding : 5}}>{name}</Text>
     )
 }
 
 const RestaurantDescription =({description})=>{
     return (
-        <Text>{description}</Text>
+        <Text style={{padding : 5}}>{description}</Text>
     )
 }
 

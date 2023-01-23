@@ -34,9 +34,9 @@ const FoodImage =({url}) =>{
 const FoodInfo =({title, price, description}) =>{
     return (
         <View>
-            <Text>{title}</Text>
+            <Text style={{fontSize : 15, fontWeight : '900'}}>{title}</Text>
             <Text>{description}</Text>
-            <Text>{price}</Text>
+            <Text style={{paddingTop : 9}}>{price}</Text>
         </View>
     )
 }

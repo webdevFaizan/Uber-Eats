@@ -42,7 +42,7 @@ export default function ViewCart() {
             alignItems : 'center',            
             flexDirection : 'row',
             position : 'absolute',
-            bottom : 60,
+            bottom : 30,
             zIndex : 897            
         }}>
             <View style={{
