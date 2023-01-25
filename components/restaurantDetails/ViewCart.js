@@ -1,5 +1,6 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
+import { useSelector } from 'react-redux'
 // import {  } from 'react-native-gesture-handler'
 
 // export default function ViewCart() {
@@ -35,9 +36,17 @@ import React from 'react'
 // }
 
 export default function ViewCart() {
+    const items = useSelector((state)=>state.cartReducer.selectedItems.items);
+    // console.log(items);
+    const priceArray = items.map((item)=>Number(item.price.replace('$','')));
+    let totalPrice = priceArray.reduce((prev, curr)=>prev+curr,0);
+    console.log(totalPrice);
+
+    // let totalPrice = items.reduce()
+
     return (    
-        // IMPORTANT : This view cart component had to be kept on the top of all the other elements, and the position had to be defined in respect to the whole screen, this is why flex =1 had to be kept, and the position of this component had to be absolute, so that no matter the scrolling component, the view cart remained at its designated place.
         <View style={{
+            // IMPORTANT : This view cart component had to be kept on the top of all the other elements, and the position had to be defined in respect to the whole screen, this is why flex =1 had to be kept, and the position of this component had to be absolute, so that no matter the scrolling component, the view cart remained at its designated place.
             flex : 1,
             alignItems : 'center',            
             flexDirection : 'row',
@@ -63,8 +72,8 @@ export default function ViewCart() {
                     position : 'relative'
                 }}
                 >
-                    <Text style={{color : 'white', fontSize : 20}}>VIEWCART</Text>
-                </TouchableOpacity>          
+                    <Text style={{color : 'white', fontSize : 20}}>VIEWCART {'$'+totalPrice}</Text>
+                </TouchableOpacity>      
             </View>  
         </View>
     )

@@ -18,7 +18,7 @@ let cartReducer = (state= defaultState, actions) =>{
                         checkBoxValue : actions.payload.checkBoxValue
                     }],
                 };
-                console.log(newState.selectedItems.items);
+                // console.log(newState.selectedItems.items);
             }
             else{
                 console.log("REMOVE_FROM_CART"); 
@@ -29,18 +29,8 @@ let cartReducer = (state= defaultState, actions) =>{
                         }
                     )],
                 };
-                console.log(newState.selectedItems.items);     
+                // console.log(newState.selectedItems.items);     
             }
-            return newState;
-        }
-
-        case 'REMOVE_FROM_CART' : {
-            let newState= {...state};
-            newState.selectedItems = {
-                items : [...newState.selectedItems.items, actions.payload.food],
-                restaurantName : actions.payload.restaurantName
-            };
-            console.log(newState.selectedItems);
             return newState;
         }
 
