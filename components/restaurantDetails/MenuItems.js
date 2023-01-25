@@ -11,7 +11,11 @@ export default function MenuItems({foods, restaurantName}) {
     const selectedItem = (item) =>{
         dispatch({
             type : 'ADD_TO_CART',
-            payload : item
+            payload : {
+                food : item.food,
+                restaurantName : item.restaurantName,
+                checkBoxValue : item.checkBoxValue
+            }
         })
     }
 
@@ -26,7 +30,8 @@ export default function MenuItems({foods, restaurantName}) {
                                 <BouncyCheckbox
                                     iconStyle={{ borderColor: "lightgray"}}
                                     fillColor="black"
-                                    onPress={()=>selectedItem({food, restaurantName})}
+                                    onPress={(checkBoxValue)=>selectedItem({food, restaurantName, checkBoxValue})}  //The onPress callback will have a param to be passed that consists of checkboxValue, if it is on then it will pass true.
+                                    
                                 />
                             </View>
                             <View style={{width : '60%'}}>
