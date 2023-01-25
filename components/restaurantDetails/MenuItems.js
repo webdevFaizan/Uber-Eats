@@ -1,8 +1,19 @@
 import { View, Text, StyleSheet, ScrollView, FlatList } from 'react-native'
 import React from 'react'
-import { Image } from 'react-native-elements'
+import { Image } from 'react-native-elements';
+import { useDispatch } from 'react-redux';
+import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
 export default function MenuItems({foods}) {
+    const dispatch = useDispatch();     //Hooks can only be saftly accessed inside the function that is being exported.
+    // IMPORTANT : This function here is the function that will run as soon as we click on the checkbox, and as soon as it runs, it will dispatch the contents to the store, and the contents will be added in the store.
+    const selectedItem = (item) =>{
+        dispatch({
+            type : 'ADD_TO_CART',
+            payload : item
+        })
+    }
+
     console.log(foods.length)
     return (
         <View >
@@ -10,6 +21,13 @@ export default function MenuItems({foods}) {
                 (<View  key={index}>
                     <View style={styles.menuItemStyle}>   
                         <View style={styles.menuItemStyle2}>
+                            <View>
+                                <BouncyCheckbox
+                                    iconStyle={{ borderColor: "lightgray"}}
+                                    fillColor="black"
+                                    onPress={()=>selectedItem(food)}
+                                />
+                            </View>
                             <View style={{width : '60%'}}>
                                 <FoodInfo price={food.price} description={food.description} title={food.title}/>
                             </View>

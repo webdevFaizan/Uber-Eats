@@ -7,13 +7,13 @@ let defaultState = {
 
 let cartReducer = (state= defaultState, actions) =>{
     switch(actions.type){
-        case 'ADD_T0_CART' : {
+        case 'ADD_TO_CART' : {
             let newState= {...state};
             newState.selectedItems = {
                 items : [...newState.selectedItems.items, actions.payload],
                 restaurantName : actions.payload.restaurantName
             };
-            console.log(newState);
+            console.log(newState.selectedItems.items);
             return newState;
         }
 
