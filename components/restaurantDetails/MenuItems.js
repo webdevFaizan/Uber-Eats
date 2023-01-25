@@ -1,11 +1,17 @@
 import { View, Text, StyleSheet, ScrollView, FlatList } from 'react-native'
 import React from 'react'
 import { Image } from 'react-native-elements';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
 export default function MenuItems({foods, restaurantName}) {
-    console.log(restaurantName);
+    const items = useSelector((state)=>state.cartReducer.selectedItems.items);
+
+    //IMPORTANT : The following function is going to take the food item and in Production code, it will take the id of the food item and then it will manually check the presence of the food id in the global state, and if it is found then it will return true for that case and will inturn by default create a checkbox, so that even if we go back and forth in the app the selected item will still stay selected in the global store so that user does not need to select it agian and get a good user experience.
+    const isFoodInCart=(food)=>(
+        Boolean(items.find((item)=>item.title===food.title))
+    )
+    
     const dispatch = useDispatch();     //Hooks can only be saftly accessed inside the function that is being exported.
     // IMPORTANT : This function here is the function that will run as soon as we click on the checkbox, and as soon as it runs, it will dispatch the contents to the store, and the contents will be added in the store.
     const selectedItem = (item) =>{
@@ -30,6 +36,7 @@ export default function MenuItems({foods, restaurantName}) {
                                 <BouncyCheckbox
                                     iconStyle={{ borderColor: "lightgray"}}
                                     fillColor="black"
+                                    isChecked = {isFoodInCart(food)}
                                     onPress={(checkBoxValue)=>selectedItem({food, restaurantName, checkBoxValue})}  //The onPress callback will have a param to be passed that consists of checkboxValue, if it is on then it will pass true.
                                     
                                 />
