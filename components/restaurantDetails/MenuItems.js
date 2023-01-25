@@ -4,7 +4,8 @@ import { Image } from 'react-native-elements';
 import { useDispatch } from 'react-redux';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
-export default function MenuItems({foods}) {
+export default function MenuItems({foods, restaurantName}) {
+    console.log(restaurantName);
     const dispatch = useDispatch();     //Hooks can only be saftly accessed inside the function that is being exported.
     // IMPORTANT : This function here is the function that will run as soon as we click on the checkbox, and as soon as it runs, it will dispatch the contents to the store, and the contents will be added in the store.
     const selectedItem = (item) =>{
@@ -25,7 +26,7 @@ export default function MenuItems({foods}) {
                                 <BouncyCheckbox
                                     iconStyle={{ borderColor: "lightgray"}}
                                     fillColor="black"
-                                    onPress={()=>selectedItem(food)}
+                                    onPress={()=>selectedItem({food, restaurantName})}
                                 />
                             </View>
                             <View style={{width : '60%'}}>

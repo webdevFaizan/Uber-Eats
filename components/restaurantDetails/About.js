@@ -31,7 +31,7 @@ export default function About(props) {
         <Divider width={3}/>
       </View>
       <View>
-        <MenuItems foods ={props.foods}/>
+        <MenuItems foods ={props.foods} restaurantName={name}/>
         
       </View>
     </ScrollView>
