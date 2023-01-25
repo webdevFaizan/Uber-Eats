@@ -6,6 +6,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Home from "./screens/Home";
 import RestaurantDetails from "./screens/RestaurantDetails";
 
+import { Provider as ReduxProvider } from 'react-redux';
+import store from './redux/store';
+
 
 export default function RootNavigation(){
     const Stack = createStackNavigator();
@@ -14,14 +17,15 @@ export default function RootNavigation(){
     const screenOptions = {
         headerShown : false
     };
-    const jhdf=3;
-
+    
     return (
-        <NavigationContainer>
-            <Stack.Navigator initialRouteName="Home" screenOptions={screenOptions}>
-                <Stack.Screen name="Home" component = {Home}/>
-                <Stack.Screen name="RestaurantDetails" component = {RestaurantDetails}/>
-            </Stack.Navigator>
-        </NavigationContainer>
+        <ReduxProvider store={store}>
+            <NavigationContainer>   {/* IMPORTANT : This navigation container is like the router for the web, using the react-router-dom, here we are able to Navigate to different routes having amount and unmount. This is just like a template, so you do not need to worry even if you forget it. */}
+                <Stack.Navigator initialRouteName="Home" screenOptions={screenOptions}>
+                    <Stack.Screen name="Home" component = {Home}/>
+                    <Stack.Screen name="RestaurantDetails" component = {RestaurantDetails}/>
+                </Stack.Navigator>
+            </NavigationContainer>
+        </ReduxProvider>
     )
 }
