@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, {useState} from 'react'
 import { useSelector } from 'react-redux'
+import { Modal } from 'react-native';
 // import {  } from 'react-native-gesture-handler'
 
 // export default function ViewCart() {
@@ -36,6 +37,11 @@ import { useSelector } from 'react-redux'
 // }
 
 export default function ViewCart() {
+
+
+    const [modalVisible, setModalVisible] = useState(false);
+
+
     // IMPORTANT : We are using the useSelector hook to extract the value of the items from the cartReducer, so that we could use it in this component.
     const items = useSelector((state)=>state.cartReducer.selectedItems.items);    
 
@@ -43,40 +49,62 @@ export default function ViewCart() {
     let totalPrice = items.map((item)=>Number(item.price.replace('$',''))).reduce((prev, curr)=>prev+curr,0);
     console.log(totalPrice);
 
-    return (
-        <>{totalPrice==0?'':(
-            <View style={{
-                // IMPORTANT : This view cart component had to be kept on the top of all the other elements, and the position had to be defined in respect to the whole screen, this is why flex =1 had to be kept, and the position of this component had to be absolute, so that no matter the scrolling component, the view cart remained at its designated place.
-                flex : 1,
-                alignItems : 'center',            
-                flexDirection : 'row',
-                position : 'absolute',
-                bottom : 30,
-                zIndex : 897            
-            }}>
-                <View style={{
-                    width : '100%',     //This will make the width of the container occupy the 100% of the width from the parent container, but at the same time justifyContent will make it arranged to center.
-                    flexDirection : 'row',
-                    justifyContent : 'center',
-                }}
 
-                >
-                    {/* IMPORTANT : Do not think of TouchableOpacity as a separate component, it is like a customised button, this is why styling could help it in giving the required shape and sizes. */}
-                    <TouchableOpacity style={{
-                        // marginTop : 20,
-                        backgroundColor : 'black',
-                        alignItems : 'center',
-                        padding : 13,
-                        borderRadius : 30,
-                        width : 250,
-                        position : 'relative'
+    const checkoutModalContent =() =>{
+        return (
+            <View>
+                 <TouchableOpacity onPress={()=>setModalVisible(false)}>
+                    <Text>Press Here</Text>
+                </TouchableOpacity>
+            </View>
+        )
+    }
+
+    return (
+        <>
+            <Modal
+                visible = {modalVisible}
+                animationType = 'slide'
+                onRequestClose={()=>setModalVisible(false)}
+                transparent = {true}                
+            >
+                {checkoutModalContent()}
+            </Modal>
+            <View>{totalPrice==0?'':(
+                <View style={{
+                    // IMPORTANT : This view cart component had to be kept on the top of all the other elements, and the position had to be defined in respect to the whole screen, this is why flex =1 had to be kept, and the position of this component had to be absolute, so that no matter the scrolling component, the view cart remained at its designated place.
+                    flex : 1,
+                    alignItems : 'center',            
+                    flexDirection : 'row',
+                    position : 'absolute',
+                    bottom : 30,
+                    zIndex : 897            
+                }}>
+                    <View style={{
+                        width : '100%',     //This will make the width of the container occupy the 100% of the width from the parent container, but at the same time justifyContent will make it arranged to center.
+                        flexDirection : 'row',
+                        justifyContent : 'center',
                     }}
+
                     >
-                        <Text style={{color : 'white', fontSize : 20}}>VIEWCART {'$'+totalPrice}</Text>
-                    </TouchableOpacity>      
-                </View>  
-            </View>)
-        }
+                        {/* IMPORTANT : Do not think of TouchableOpacity as a separate component, it is like a customised button, this is why styling could help it in giving the required shape and sizes. */}
+                        <TouchableOpacity style={{
+                            // marginTop : 20,
+                            backgroundColor : 'black',
+                            alignItems : 'center',
+                            padding : 13,
+                            borderRadius : 30,
+                            width : 250,
+                            position : 'relative',
+                        }}
+                            onPress={()=>setModalVisible(true)}
+                        >
+                            <Text style={{color : 'white', fontSize : 20}}>VIEWCART {'$'+totalPrice}</Text>
+                        </TouchableOpacity>      
+                    </View>  
+                </View>)
+                }
+            </View>
         </>
     )
   }
